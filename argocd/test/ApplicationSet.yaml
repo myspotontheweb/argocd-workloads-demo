@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: test
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/myspotontheweb/argocd-workloads-demo.git
+      revision: HEAD
+      directories:
+      - path: apps/*/test
+  template:
+    metadata:
+      name: '{{path[1]}}-test'
+    spec:
+      project: "test"
+      source:
+        repoURL: https://github.com/myspotontheweb/argocd-workloads-demo.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path[1]}}-test'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
