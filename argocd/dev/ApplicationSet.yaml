@@ -16,7 +16,7 @@ spec:
     spec:
       project: "dev"
       source:
-        repoURL: https://github.com/argoproj/argo-cd.git
+        repoURL: https://github.com/myspotontheweb/argocd-workloads-demo.git
         targetRevision: HEAD
         path: '{{path}}'
       destination:

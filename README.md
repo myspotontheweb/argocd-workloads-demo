@@ -37,3 +37,13 @@ Start a local UI proxy
 ```
 argocd admin dashboard
 ```
+
+Install a dev workload
+
+```
+argocd app create bootstrap-dev \
+   --repo https://github.com/myspotontheweb/argocd-workloads-demo.git \
+   --path argocd/dev \
+   --dest-namespace argocd \
+   --dest-server https://kubernetes.default.svc
+```
