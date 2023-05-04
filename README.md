@@ -46,4 +46,6 @@ argocd app create bootstrap-dev \
    --path argocd/dev \
    --dest-namespace argocd \
    --dest-server https://kubernetes.default.svc
+
+argocd app sync bootstrap-dev
 ```
