@@ -93,7 +93,7 @@ apps
 │       └── values.yaml
 ```
 
-## ArgoCD configration
+## ArgoCD configuration
 
 Each environment type is represented within ArgoCD as a [Project](https://argo-cd.readthedocs.io/en/stable/user-guide/projects/). There is an additional [ApplicationSet](https://argo-cd.readthedocs.io/en/stable/user-guide/application-set/) to generate the Application configuration for each deployment using helm.
 
@@ -109,3 +109,7 @@ argocd
     ├── ApplicationSet.yaml
     └── AppProject.yaml
 ```
+
+Note:
+
+* The environment settings are contained in separate directories, enabling them to be deployed to different Kubernetes clusters
