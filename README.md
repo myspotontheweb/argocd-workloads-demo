@@ -54,7 +54,7 @@ argocd app create bootstrap-dev \
 Deploy "test" workloads
 
 ```
-argocd app create bootstrap-dev \
+argocd app create bootstrap-test \
    --repo https://github.com/myspotontheweb/argocd-workloads-demo.git \
    --path argocd/test \
    --dest-namespace argocd \
@@ -65,7 +65,7 @@ argocd app create bootstrap-dev \
 Deploy "prod" workloads
 
 ```
-argocd app create bootstrap-dev \
+argocd app create bootstrap-prod \
    --repo https://github.com/myspotontheweb/argocd-workloads-demo.git \
    --path argocd/prod \
    --dest-namespace argocd \
