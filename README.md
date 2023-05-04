@@ -38,7 +38,7 @@ Start a local UI proxy
 argocd admin dashboard
 ```
 
-Install a dev workload
+Deploy "dev" workloads
 
 ```
 argocd app create bootstrap-dev \
