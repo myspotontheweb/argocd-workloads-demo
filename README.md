@@ -45,7 +45,6 @@ argocd app create bootstrap-dev \
    --repo https://github.com/myspotontheweb/argocd-workloads-demo.git \
    --path argocd/dev \
    --dest-namespace argocd \
-   --dest-server https://kubernetes.default.svc
-
-argocd app sync bootstrap-dev
+   --dest-server https://kubernetes.default.svc \
+   --sync-policy automated
 ```
