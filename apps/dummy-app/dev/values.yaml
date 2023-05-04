@@ -1,0 +1,6 @@
+app:
+  containers:
+  - image: "nginx:stable"
+  service:
+   ports:
+   - port: 80
