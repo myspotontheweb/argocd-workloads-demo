@@ -82,15 +82,31 @@ Applications are deployed using Helm. Each application has a "dev", "test" and "
 ```
 apps
 ├── dummy-app1
-│   ├── dev
-│   │   ├── Chart.yaml
-│   │   └── values.yaml
-│   ├── prod
-│   │   ├── Chart.yaml
-│   │   └── values.yaml
-│   └── test
-│       ├── Chart.yaml
-│       └── values.yaml
+    ├── dev
+    │   ├── Chart.yaml
+    │   └── values.yaml
+    ├── prod
+    │   ├── Chart.yaml
+    │   └── values.yaml
+    └── test
+        ├── Chart.yaml
+        └── values.yaml
+```
+
+Each helm chart uses dependency management to pull in the chart that generates the actual YAML. This approach allows each environemnt deployment to override settings such as the image tag.
+
+```
+apiVersion: v2
+name: dummy-app1
+description: A Helm chart for a dummy app used for testing
+type: application
+version: 0.1.0
+appVersion: "1.16.0"
+dependencies:
+  - name: component-chart
+    repository: https://charts.devspace.sh
+    version: 0.9.0
+    alias: app
 ```
 
 ## ArgoCD configuration
