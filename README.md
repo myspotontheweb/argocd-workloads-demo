@@ -72,3 +72,40 @@ argocd app create bootstrap-prod \
    --dest-server https://kubernetes.default.svc \
    --sync-policy automated
 ```
+
+# Configuration
+
+## Application Configuration
+
+Applications are deployed using Helm. Each application has a "dev", "test" and "prod" sub-directory corresponding to the environments used in the application release promotion process.
+
+```
+apps
+├── dummy-app1
+│   ├── dev
+│   │   ├── Chart.yaml
+│   │   └── values.yaml
+│   ├── prod
+│   │   ├── Chart.yaml
+│   │   └── values.yaml
+│   └── test
+│       ├── Chart.yaml
+│       └── values.yaml
+```
+
+## ArgoCD configration
+
+Each environment type is represented within ArgoCD as a [Project](https://argo-cd.readthedocs.io/en/stable/user-guide/projects/). There is an additional [ApplicationSet](https://argo-cd.readthedocs.io/en/stable/user-guide/application-set/) to generate the Application configuration for each deployment using helm.
+
+```
+argocd
+├── dev
+│   ├── ApplicationSet.yaml
+│   └── AppProject.yaml
+├── prod
+│   ├── ApplicationSet.yaml
+│   └── AppProject.yaml
+└── test
+    ├── ApplicationSet.yaml
+    └── AppProject.yaml
+```
