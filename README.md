@@ -75,7 +75,7 @@ argocd app create bootstrap-prod \
 
 # Configuration
 
-## Application Configuration
+## Application configuration
 
 Applications are deployed using Helm. Each application has a "dev", "test" and "prod" sub-directory corresponding to the environments used in the application release promotion process.
 
