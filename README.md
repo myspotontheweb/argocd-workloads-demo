@@ -81,7 +81,7 @@ Applications are deployed using Helm. Each application has a "dev", "test" and "
 
 ```
 apps
-├── dummy-app1
+├── springboot-demo1
     ├── dev
     │   ├── Chart.yaml
     │   └── values.yaml
@@ -93,25 +93,28 @@ apps
         └── values.yaml
 ```
 
-Each helm chart uses dependency management to pull in the chart that generates the actual YAML. This approach allows each environemnt deployment to override settings such as the image tag.
+Each helm chart uses dependency management to pull in the correct chart version. In this case the [springboot-demo1](https://github.com/myspotontheweb/springboot-demo1) repository is publishing a versioned Helm chart, 1.0.1.
 
 ```
 apiVersion: v2
-name: dummy-app1
-description: A Helm chart for a dummy app used for testing
+name: springboot-demo1
+description: A Helm chart for Spring Boot demo application
 type: application
-version: 0.1.0
-appVersion: "1.16.0"
+version: 1.0.0
+appVersion: "v1.0.0"
 dependencies:
-  - name: component-chart
-    repository: https://charts.devspace.sh
-    version: 0.9.0
+  - name: demo1
+    repository: oci://ghcr.io/myspotontheweb/spring-boot-demo1/charts
+    version: 1.0.1
     alias: app
 ```
 
-Notes:
+The values.yaml file is used to customize any settins for the target environment
 
-* For demo purposes we're using the [Devspace Component Chart](https://www.devspace.sh/component-chart/docs/introduction) as a dependency. It would be more normal for the dependency to be an application helm chart, stored in a Helm repo or Docker registry.
+```
+app:
+  replicaCount: 3
+```
 
 ## ArgoCD configuration
 
