@@ -22,17 +22,14 @@ targets:
       file: "Chart.yaml"
       key: "dependencies[0].version"
 
-actions:
-  springboot-demo1:
-    kind: "github/pullrequest"
-    scmid: default
-    spec:
-      description: "Update springboot-demo1 latest version"
-      title: "springboot-demo1 update"
-      automerge: true
-      usetitleforautomerge: true
-      mergemethod: squash
-      draft: false
+#actions:
+#  springboot-demo1:
+#    kind: "github/pullrequest"
+#    scmid: default
+#    spec:
+#      description: "Update springboot-demo1 latest version"
+#      title: "springboot-demo1 update"
+#      automerge: true
 
 scms:
   default:
