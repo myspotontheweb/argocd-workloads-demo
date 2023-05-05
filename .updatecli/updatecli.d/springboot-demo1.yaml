@@ -1,0 +1,23 @@
+name: Update springboot-demo1 Helm chart
+
+sources:
+  springboot-demo1:
+    kind: "helmchart"
+    name: "Get springboot-demo1 latest version"
+    spec:
+      url: "oci://ghcr.io/myspotontheweb/spring-boot-demo1/charts/demo1"
+      username: '{{ requiredEnv "UPDATECLI_GITHUB_USERNAME" }}'
+      password: '{{ requiredEnv "UPDATECLI_GITHUB_PASSWORD" }}'
+      versionfilter:
+        kind: latest
+
+targets:
+  springboot-demo1:
+    kind: "helmchart"
+    name: "Get springboot-demo1 latest version"
+    spec:
+      name: "apps/springboot-demo1/dev"
+      appversion: false
+      file: "Chart.yaml"
+      key: "dependencies[0].version"
+
