@@ -25,5 +25,5 @@ jobs:
       - name: Run Updatecli in apply mode
         run: "updatecli apply --config ./updatecli/updatecli.d"
         env:
-          UPDATECLI_GITHUB_USERNAME: "${{ secrets.GITHUB_USERNAME }}"
-          UPDATECLI_GITHUB_PASSWORD: "${{ secrets.GITHUB_PASSWORD }}"
+          UPDATECLI_GITHUB_USERNAME: "${{ secrets.UPDATECLI_GITHUB_USERNAME }}"
+          UPDATECLI_GITHUB_PASSWORD: "${{ secrets.UPDATECLI_GITHUB_PASSWORD }}"
