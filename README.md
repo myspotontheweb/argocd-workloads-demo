@@ -133,3 +133,29 @@ argocd
 Notes:
 
 * The environment settings are contained in separate directories, enabling them to be deployed to different Kubernetes clusters
+
+# Testing Helm chharts
+
+The following command will download the remote helm chart dependencies
+
+```
+helm dependencies update apps/springboot-demo1/dev
+
+```
+
+These are stored locally as follows
+
+```
+apps/springboot-demo1
+└── dev
+    ├── Chart.lock
+    ├── Chart.yaml
+    └── charts
+        └── demo1-1.0.1.tgz
+```
+
+Now possible to review the generated YAML manifests for Kubernetes
+
+```
+helm template rel1 apps/springboot-demo1/dev
+```

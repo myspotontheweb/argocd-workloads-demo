@@ -1,0 +1,11 @@
+apiVersion: v2
+name: springboot-demo1
+description: A Helm chart for Spring Boot demo application
+type: application
+version: 1.0.0
+appVersion: "v1.0.0"
+dependencies:
+  - name: demo1
+    repository: oci://ghcr.io/myspotontheweb/spring-boot-demo1/charts
+    version: 1.0.1
+    alias: app
