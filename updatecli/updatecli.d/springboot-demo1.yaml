@@ -29,8 +29,8 @@ actions:
     spec:
       description: "Update springboot-demo1 latest version"
       title: "springboot-demo1 update"
-      automerge: false
-      usetitleforautomerge: false
+      automerge: true
+      usetitleforautomerge: true
       mergemethod: squash
       draft: false
 
