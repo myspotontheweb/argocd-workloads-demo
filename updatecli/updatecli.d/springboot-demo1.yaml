@@ -1,5 +1,30 @@
 name: Update springboot-demo1 Helm chart
 
+scms:
+  default:
+    kind: "github"
+    spec:
+      user: "mark"
+      email: "mark@myspotontheweb.com"
+      owner: "myspotontheweb"
+      repository: "argocd-workloads-demo"
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      username: '{{ requiredEnv "GITHUB_AUTHOR" }}'
+      branch: "main"
+
+actions:
+  springboot-demo1:
+    kind: "github"
+    scmid: "default"
+    target:
+    - springboot-demo1
+    spec:
+      automerge: true
+      mergemethod: squash
+      description: "Update springboot-demo1 latest version"
+      draft: false
+      title: "Update springboot-demo1 latest version"
+
 sources:
   springboot-demo1:
     kind: "helmchart"
@@ -15,6 +40,7 @@ targets:
   springboot-demo1:
     kind: "helmchart"
     name: "Get springboot-demo1 latest version"
+    scmid: "default"
     spec:
       name: "apps/springboot-demo1/dev"
       appversion: false
