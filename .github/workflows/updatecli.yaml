@@ -36,6 +36,6 @@ jobs:
         run: |
           git config --global user.name  "${{ env.CI_COMMIT_AUTHOR }}"
           git config --global user.email "${{ env.CI_COMMIT_EMAIL }}"
-          git commit -am "${{ env.CI_COMMIT_MESSAGE }}"
+          git diff --exit-code || git commit -am "${{ env.CI_COMMIT_MESSAGE }}"
           git pull --rebase
           git push
