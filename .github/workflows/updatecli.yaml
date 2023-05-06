@@ -27,3 +27,11 @@ jobs:
         env:
           GH_USERNAME: "${{ secrets.GH_USERNAME }}"
           GH_PASSWORD: "${{ secrets.GH_PASSWORD }}"
+
+      - name: Commit changes
+        run: |
+          git config user.email "gitops@myspotontheweb.com"
+          git config user.name "gitops"
+          git commit -am "Gitops update by updatecli"
+          git pull --rebase
+          git push
