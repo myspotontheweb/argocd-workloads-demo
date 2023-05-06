@@ -21,27 +21,3 @@ targets:
       appversion: false
       file: "Chart.yaml"
       key: "dependencies[0].version"
-
-#actions:
-#  springboot-demo1:
-#    kind: "github/pullrequest"
-#    scmid: default
-#    spec:
-#      description: "Update springboot-demo1 latest version"
-#      title: "springboot-demo1 update"
-#      automerge: true
-
-scms:
-  default:
-    kind: github
-    spec:
-      user: "git user to push from changes"
-      email: "mark@myspotontheweb.com"
-      owner: "myspotontheweb"
-      repository: "argocd-workloads-demo"
-      username: '{{ requiredEnv "GH_USERNAME" }}'
-      token: '{{ requiredEnv "GH_PASSWORD" }}'
-      branch: "main"
-      commitmessage:
-        type: "feat"
-        title: "Override default commit title"
