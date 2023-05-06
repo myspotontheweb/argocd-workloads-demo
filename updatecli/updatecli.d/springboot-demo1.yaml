@@ -15,7 +15,6 @@ targets:
   springboot-demo1:
     name: "Get springboot-demo1 latest version"
     kind: "helmchart"
-    scmid: default
     spec:
       name: "apps/springboot-demo1/dev"
       appversion: false
