@@ -12,7 +12,7 @@ sources:
         kind: latest
 
 targets:
-  springboot-demo1:
+  springboot-demo1-dev:
     name: "Get springboot-demo1 latest version"
     kind: "helmchart"
     spec:
