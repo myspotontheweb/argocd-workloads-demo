@@ -1,8 +1,8 @@
-name: Update springboot-demo1 Helm chart
+name: Gitops rules for updating springboot-demo1
 
 sources:
-  springboot-demo1:
-    name: "Get springboot-demo1 latest version"
+  latest-version-springboot-demo1:
+    name: "Get latest helm chart version"
     kind: "helmchart"
     spec:
       url: "oci://ghcr.io/myspotontheweb/spring-boot-demo1/charts/demo1"
@@ -12,8 +12,8 @@ sources:
         kind: latest
 
 targets:
-  springboot-demo1-dev:
-    name: "Get springboot-demo1 latest version"
+  update-dev-springboot-demo1:
+    name: "Update the helm chart used to deploy Dev environment"
     kind: "helmchart"
     spec:
       name: "apps/springboot-demo1/dev"
