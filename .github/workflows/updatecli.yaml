@@ -23,19 +23,19 @@ jobs:
         uses: updatecli/updatecli-action@v2
 
       - name: Run Updatecli in apply mode
+        run: "updatecli apply --config ./updatecli.d"
         env:
           GH_USERNAME: "${{ secrets.GH_USERNAME }}"
           GH_PASSWORD: "${{ secrets.GH_PASSWORD }}"
-        run: "updatecli apply --config ./updatecli/updatecli.d"
 
       - name: GIT commit and push all changed files
-        env:
-          CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
-          CI_COMMIT_AUTHOR: gitops
-          CI_COMMIT_EMAIL: gitops@myspotontheweb.com
         run: |
           git config --global user.name  "${{ env.CI_COMMIT_AUTHOR }}"
           git config --global user.email "${{ env.CI_COMMIT_EMAIL }}"
           git diff --exit-code || git commit -am "${{ env.CI_COMMIT_MESSAGE }}"
           git pull --rebase
           git push
+        env:
+          CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
+          CI_COMMIT_AUTHOR: gitops
+          CI_COMMIT_EMAIL: gitops@myspotontheweb.com
