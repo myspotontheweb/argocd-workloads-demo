@@ -8,4 +8,4 @@ dependencies:
 description: A Helm chart for Spring Boot demo application
 name: springboot-demo1
 type: application
-version: 1.20.0
+version: 1.21.0
