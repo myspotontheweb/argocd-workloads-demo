@@ -1,7 +1,18 @@
 name: Gitops rules for updating springboot-demo1
 
 sources:
-  latest-version-springboot-demo1:
+
+  latest-image-version:
+    name: "Get latest Docker image version"
+    kind: "dockerimage"
+    spec:
+      image: "ghcr.io/myspotontheweb/spring-boot-demo1/demo1"
+      username: '{{ requiredEnv "GH_USERNAME" }}'
+      password: '{{ requiredEnv "GH_PASSWORD" }}'
+      versionfilter:
+        kind: latest
+
+  latest-helm-chart-version:
     name: "Get latest helm chart version"
     kind: "helmchart"
     spec:
@@ -12,11 +23,23 @@ sources:
         kind: latest
 
 targets:
-  update-dev-springboot-demo1:
+
+  update-dev-chart:
     name: "Update the helm chart used to deploy Dev environment"
     kind: "helmchart"
+    sourceid: latest-image-version
     spec:
       name: "apps/springboot-demo1/dev"
+      appversion: false
+      file: "values.yaml"
+      key: "app.image.tag"
+
+  update-test-chart:
+    name: "Update the helm chart used to deploy Test environment"
+    kind: "helmchart"
+    sourceid: latest-helm-chart-version
+    spec:
+      name: "apps/springboot-demo1/test"
       appversion: false
       file: "Chart.yaml"
       key: "dependencies[0].version"
