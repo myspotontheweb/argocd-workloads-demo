@@ -6,7 +6,7 @@ sources:
     name: "Get latest Docker image version"
     kind: "dockerimage"
     spec:
-      image: "ghcr.io/myspotontheweb/spring-boot-demo1/demo1"
+      image: "ghcr.io/myspotontheweb/argocd-workloads-demo/pre-prod/demo1"
       username: '{{ requiredEnv "DOCKER_USERNAME" }}'
       password: '{{ requiredEnv "DOCKER_PASSWORD" }}'
       versionfilter:
@@ -16,7 +16,7 @@ sources:
     name: "Get latest helm chart version"
     kind: "helmchart"
     spec:
-      url: "oci://ghcr.io/myspotontheweb/spring-boot-demo1/charts/demo1"
+      url: "oci://ghcr.io/myspotontheweb/argocd-workloads-demo/pre-prod/charts/demo1"
       username: '{{ requiredEnv "DOCKER_USERNAME" }}'
       password: '{{ requiredEnv "DOCKER_PASSWORD" }}'
       versionfilter:

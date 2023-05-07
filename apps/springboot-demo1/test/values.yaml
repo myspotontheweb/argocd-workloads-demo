@@ -1,2 +1,4 @@
 app:
-  replicaCount: 3
+  replicaCount: 2
+  image:
+    repository: ghcr.io/myspotontheweb/argocd-workloads-demo/pre-prod/demo1
