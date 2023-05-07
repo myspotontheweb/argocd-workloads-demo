@@ -1,4 +1,4 @@
 app:
   replicaCount: 3
   image:
-    tag: sha-1da9e62
+    tag: sha-eb591ef
