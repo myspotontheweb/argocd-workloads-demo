@@ -25,8 +25,8 @@ jobs:
       - name: Run Updatecli in apply mode
         run: "updatecli apply --config ./updatecli.d"
         env:
-          GH_USERNAME: "${{ secrets.GH_USERNAME }}"
-          GH_PASSWORD: "${{ secrets.GH_PASSWORD }}"
+          DOCKER_USERNAME: "${{ secrets.DOCKER_USERNAME }}"
+          DOCKER_PASSWORD: "${{ secrets.DOCKER_PASSWORD }}"
 
       - name: GIT commit and push all changed files
         run: |

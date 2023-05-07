@@ -7,8 +7,8 @@ sources:
     kind: "dockerimage"
     spec:
       image: "ghcr.io/myspotontheweb/spring-boot-demo1/demo1"
-      username: '{{ requiredEnv "GH_USERNAME" }}'
-      password: '{{ requiredEnv "GH_PASSWORD" }}'
+      username: '{{ requiredEnv "DOCKER_USERNAME" }}'
+      password: '{{ requiredEnv "DOCKER_PASSWORD" }}'
       versionfilter:
         kind: latest
 
@@ -17,8 +17,8 @@ sources:
     kind: "helmchart"
     spec:
       url: "oci://ghcr.io/myspotontheweb/spring-boot-demo1/charts/demo1"
-      username: '{{ requiredEnv "GH_USERNAME" }}'
-      password: '{{ requiredEnv "GH_PASSWORD" }}'
+      username: '{{ requiredEnv "DOCKER_USERNAME" }}'
+      password: '{{ requiredEnv "DOCKER_PASSWORD" }}'
       versionfilter:
         kind: latest
 
