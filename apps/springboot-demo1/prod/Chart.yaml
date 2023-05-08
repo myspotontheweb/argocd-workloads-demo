@@ -4,8 +4,8 @@ dependencies:
 - alias: app
   name: demo1
   repository: oci://ghcr.io/myspotontheweb/argocd-workloads-demo/prod/charts
-  version: 1.0.16
+  version: 1.0.17
 description: A Helm chart for Spring Boot demo application
 name: springboot-demo1
 type: application
-version: 1.12.0
+version: 1.13.0
