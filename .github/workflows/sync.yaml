@@ -1,12 +1,8 @@
 ---
-name: Updatecli
+name: sync
 
 on:
   workflow_dispatch:
-  schedule:
-    # * is a special character in YAML so you have to quote this string
-    # Run once a day 
-    - cron: '0 0 * * *'
 
 permissions:
   contents: "write"
