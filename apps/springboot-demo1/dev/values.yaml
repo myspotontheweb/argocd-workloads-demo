@@ -2,4 +2,4 @@ app:
   replicaCount: 2
   image:
     repository: ghcr.io/myspotontheweb/argocd-workloads-demo/pre-prod/demo1
-    tag: sha-26265a9
+    tag: sha-6df0933
