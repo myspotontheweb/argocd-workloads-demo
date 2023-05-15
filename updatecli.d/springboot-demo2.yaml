@@ -1,0 +1,65 @@
+name: Gitops rules for updating springboot-demo2
+
+sources:
+
+  latest-pre-prod-image-version:
+    name: "Get latest Docker image version"
+    kind: "dockerimage"
+    spec:
+      image: "ghcr.io/myspotontheweb/argocd-workloads-demo/pre-prod/demo2"
+      username: '{{ requiredEnv "DOCKER_USERNAME" }}'
+      password: '{{ requiredEnv "DOCKER_PASSWORD" }}'
+      versionfilter:
+        kind: latest
+
+  latest-pre-prod-helm-chart-version:
+    name: "Get latest helm chart version"
+    kind: "helmchart"
+    spec:
+      url: "oci://ghcr.io/myspotontheweb/argocd-workloads-demo/pre-prod/charts/demo2"
+      username: '{{ requiredEnv "DOCKER_USERNAME" }}'
+      password: '{{ requiredEnv "DOCKER_PASSWORD" }}'
+      versionfilter:
+        kind: latest
+
+#  latest-prod-helm-chart-version:
+#    name: "Get latest helm chart version"
+#    kind: "helmchart"
+#    spec:
+#      url: "oci://ghcr.io/myspotontheweb/argocd-workloads-demo/prod/charts/demo2"
+#      username: '{{ requiredEnv "DOCKER_USERNAME" }}'
+#      password: '{{ requiredEnv "DOCKER_PASSWORD" }}'
+#      versionfilter:
+#        kind: latest
+
+targets:
+
+  update-dev-chart:
+    name: "Update the helm chart used to deploy Dev environment"
+    kind: "helmchart"
+    sourceid: latest-pre-prod-image-version
+    spec:
+      name: "apps/springboot-demo2/dev"
+      appversion: false
+      file: "values.yaml"
+      key: "app.image.tag"
+
+  update-test-chart:
+    name: "Update the helm chart used to deploy Test environment"
+    kind: "helmchart"
+    sourceid: latest-pre-prod-helm-chart-version
+    spec:
+      name: "apps/springboot-demo2/test"
+      appversion: false
+      file: "Chart.yaml"
+      key: "dependencies[0].version"
+
+#  update-prod-chart:
+#    name: "Update the helm chart used to deploy Prod environment"
+#    kind: "helmchart"
+#    sourceid: latest-prod-helm-chart-version
+#    spec:
+#      name: "apps/springboot-demo2/prod"
+#      appversion: false
+#      file: "Chart.yaml"
+#      key: "dependencies[0].version"

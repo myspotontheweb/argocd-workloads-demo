@@ -1,0 +1,5 @@
+app:
+  replicaCount: 2
+  image:
+    repository: ghcr.io/myspotontheweb/argocd-workloads-demo/pre-prod/demo2
+    tag: 0.0.5
