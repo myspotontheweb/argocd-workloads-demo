@@ -19,7 +19,7 @@ jobs:
         uses: updatecli/updatecli-action@v2
 
       - name: Run Updatecli in apply mode
-        run: "updatecli apply --config ./updatecli.d"
+        run: "updatecli apply --config ./updatecli/updatecli.d --values updatecli/values.yaml"
         env:
           DOCKER_USERNAME: "${{ secrets.DOCKER_USERNAME }}"
           DOCKER_PASSWORD: "${{ secrets.DOCKER_PASSWORD }}"
