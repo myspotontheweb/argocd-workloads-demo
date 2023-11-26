@@ -137,7 +137,7 @@ Notes:
 
 * The environment settings are contained in separate directories, enabling them to be deployed to different Kubernetes clusters
 
-# Testing Helm chharts
+# Testing Helm charts
 
 The following command will download the remote helm chart dependencies
 
