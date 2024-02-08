@@ -1,5 +1,25 @@
 name: Gitops rules for updating springboot-demo1
 
+scms:
+  default:
+    kind: github
+    spec:
+      branch: '{{ .github.branch }}'
+      owner: '{{ .github.owner }}'
+      repository: '{{ .github.repository }}'
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      user: '{{ requiredEnv "GITHUB_ACTOR" }}'
+      username: '{{ requiredEnv "GITHUB_ACTOR" }}'
+
+actions:
+  default:
+    scmid: default
+    kind: github/pullrequest
+    spec:
+      title: Bump Helm Chart Version
+      labels:
+        - "dependencies"
+
 sources:
 
   latest-pre-prod-image-version:
@@ -37,29 +57,32 @@ targets:
   update-dev-chart:
     name: "Update the helm chart used to deploy Dev environment"
     kind: "helmchart"
+    scmid: default
     sourceid: latest-pre-prod-image-version
     spec:
       name: "apps/springboot-demo1/dev"
       appversion: false
       file: "values.yaml"
-      key: "app.image.tag"
+      key: "$.app.image.tag"
 
   update-test-chart:
     name: "Update the helm chart used to deploy Test environment"
     kind: "helmchart"
+    scmid: default
     sourceid: latest-pre-prod-helm-chart-version
     spec:
       name: "apps/springboot-demo1/test"
       appversion: false
       file: "Chart.yaml"
-      key: "dependencies[0].version"
+      key: "$.dependencies[0].version"
 
   update-prod-chart:
     name: "Update the helm chart used to deploy Prod environment"
     kind: "helmchart"
+    scmid: default
     sourceid: latest-prod-helm-chart-version
     spec:
       name: "apps/springboot-demo1/prod"
       appversion: false
       file: "Chart.yaml"
-      key: "dependencies[0].version"
+      key: "$.dependencies[0].version"
